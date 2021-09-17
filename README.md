@@ -1,2 +1,3 @@
-# loo
-A simple ,esoteric programming language, created just for fun . 
+# Technetium
+
+<img src="https://avatars.githubusercontent.com/u/79608367?s=200&v=4">
