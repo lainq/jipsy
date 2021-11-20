@@ -6,12 +6,12 @@ export const getFunctionParameters = (params:Array<any>):string => {
     for(let index=0; index<params.length; index++){
         const current = params[index]
         if(current.type == "Identifier"){
-            params_ += "auto " + current.name + ","
+            params_ += current.name + ","
         } else if(current.type == "AssignmentPattern"){
-            new Exception({
-                message:"Default parameter values not supported", 
-                suggestion: `In line ${current.loc.start.line} column ${current.loc.start.column}`
-            })
+            const paramName = current.left.name
+            const value = 
+                current.right.value != undefined ? current.right.value : current.right.name
+            params_ += `${paramName}=${value},`
         }
     }
     params_ = params_.slice(0, -1) + ")"
@@ -25,10 +25,9 @@ export class FunctionDefiniton {
             new Exception({message:"Async not supported yet:/"})
         }
         const name = expression.id.name
-        // console.log(expression.init)
-        output += `auto ${name}${getFunctionParameters(expression.init.params)}{
+        output += `def ${name}${getFunctionParameters(expression.init.params)}:\n\tpass`
 
-        };\n`
+        output += "\n\n\n"
         return output
     }
 }

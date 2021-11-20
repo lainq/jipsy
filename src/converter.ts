@@ -32,7 +32,7 @@ export class Converter {
         for(let index=0; index<node.declarations.length; index++){
             const declaration = node.declarations[index]
             if(["ArrowFunctionExpression", "FunctionExpression"].includes(declaration.init.type)){
-                // this.output += FunctionDefiniton.fromArrowFunction(declaration)
+                this.output += FunctionDefiniton.fromArrowFunction(declaration)
                 continue
             }
             const name = declaration.id.name
