@@ -1,0 +1,27 @@
+{
+  "name": "esolang",
+  "version": "1.0.0",
+  "description": "<img src=\"https://avatars.githubusercontent.com/u/79608367?s=200&v=4\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavbaburaj/esolang.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranavbaburaj/esolang/issues"
+  },
+  "homepage": "https://github.com/pranavbaburaj/esolang#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
