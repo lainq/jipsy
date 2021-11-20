@@ -1,39 +1,36 @@
-
 export enum TokenType {
-    STRING,
-    CHAR,
-    NUMBER,
-    LEFT_PARAN,
-    RIGHT_PARAN,
-    LEFT_BRACE,
-    RIGHT_BRACE,
-    IDENTIFIER,
+  STRING,
+  CHAR,
+  NUMBER,
+  LEFT_PARAN,
+  RIGHT_PARAN,
+  LEFT_BRACE,
+  RIGHT_BRACE,
+  IDENTIFIER,
 
-    PIPE,
+  PIPE,
 
-    EQUALS,
-    NOT_EQUALS,
-    IS_EQUAL_TO,
-    IS_NOT_EQUAL_TO,
-    GREATER_THAN,
-    LESS_THAN,
-    GREATER_THAN_OR_EQUAL_TO,
-    LESS_THAN_OR_EQUAL_TO,
+  EQUALS,
+  NOT_EQUALS,
+  IS_EQUAL_TO,
+  IS_NOT_EQUAL_TO,
+  GREATER_THAN,
+  LESS_THAN,
+  GREATER_THAN_OR_EQUAL_TO,
+  LESS_THAN_OR_EQUAL_TO,
 
-    // operators
-    PLUS,
-    MINUS,
-    MULTIPLY,
-    DIVIDE,
-    MODULUS,
+  // operators
+  PLUS,
+  MINUS,
+  MULTIPLY,
+  DIVIDE,
+  MODULUS,
 
-    NONE,
+  NONE,
 
-    NOT,
+  NOT,
 
-    KEYWORD
+  KEYWORD,
 }
 
-export const KEYWORDS = [
-    "var"
-]
+export const KEYWORDS = ["var"];
