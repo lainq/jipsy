@@ -30,4 +30,12 @@ export class FunctionDefiniton {
         output += "\n\n\n"
         return output
     }
+
+    public static fromFunctionDeclaration(expression:any):string {
+        let output = ""
+        const name = expression.id.name
+        const params = getFunctionParameters(expression.params)
+        output += `def ${name}${params}:\n\tpass\n\n\n`
+        return output
+    }
 }

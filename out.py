@@ -8,4 +8,8 @@ def lm(jjjj):
 
 
 j:int = 444234
+def hello(j,m=9):
+	pass
+
+
 m:int = 4234234

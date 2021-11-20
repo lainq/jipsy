@@ -54,8 +54,9 @@ export class Converter {
             if(node.type === "VariableDeclaration") {
                 this.declareVariable(node)
                 continue
-            } 
-            // console.log(node.type == "ArrowFunctionExpression")
+            } else if(node.type == "FunctionDeclaration"){
+                this.output += FunctionDefiniton.fromFunctionDeclaration(node)
+            }
         }   
         return this.output
     }
