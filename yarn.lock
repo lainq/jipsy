@@ -39,6 +39,11 @@ has-flag@^4.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
+seafox@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/seafox/-/seafox-1.7.1.tgz#c84d2a524af9b5b30addb047cf5228e317f5a743"
+  integrity sha512-WK3tcdmoCHPBhoe1oojEfzeNSTkp/wEgNdReqyBNubUM5yp+sw6uU2f/SpAc0PI1VyAxiC2G7tfMY2TXr/pfIg==
+
 supports-color@^7.1.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
