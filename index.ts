@@ -1,7 +1,6 @@
 import { yellowBright } from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { ArgumentParser, ArgumentParserResults } from "./src/argument";
-import { getCompleteSource } from "./src/constants";
 import { Converter } from "./src/converter";
 import { Exception } from "./src/exception";
 
@@ -24,8 +23,8 @@ const performCommand = (result: ArgumentParserResults): void => {
       }
       let content = readFileSync(result.command).toString();
       let converter = new Converter(content);
-      const output = getCompleteSource(converter.generateOutput())
-      writeFileSync('out.c', output)
+      const output = converter.generateOutput()
+      writeFileSync('out.py', output)
   }
 };
 

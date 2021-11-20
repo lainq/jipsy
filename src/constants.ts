@@ -6,15 +6,3 @@ export const types:Map<string, Function> = new Map([
         return "char* "
     }]
 ])
-
-export const getCompleteSource = (body:string):string => {
-    return `
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-int main(int argc, char** argv) {
-    ${body}
-    return 0;
-}`
-}
