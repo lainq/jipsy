@@ -1,5 +1,5 @@
+import { yellowBright } from 'chalk'
 import { existsSync, readFileSync } from 'fs'
-import { PassThrough } from 'stream'
 import { ArgumentParser, ArgumentParserResults } from './src/argument'
 import { Exception } from './src/exception'
 import { Tokeniser } from './src/tokeniser'
@@ -13,6 +13,7 @@ const performCommand = (result:ArgumentParserResults):void => {
             if(!result.command){
                 return  
             }
+            console.log(yellowBright(`Reading ${result.command}`))
             if(!existsSync(result.command)){
                 new Exception({
                     message: `${result.command} doesn't exist`,
@@ -21,7 +22,12 @@ const performCommand = (result:ArgumentParserResults):void => {
             }
             let content = readFileSync(result.command).toString()
             let tokeniser = new Tokeniser(content)
-            console.log(tokeniser.tokenise())
+            console.log(yellowBright("Tokenising..."))
+
+            let tokens = tokeniser.tokenise()
+            console.log(yellowBright(`Found ${tokens.length} tokens`))
+            console.log(tokens)
+
         }
 }
 

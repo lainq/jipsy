@@ -1,34 +1,4 @@
-
-enum TokenType {
-    STRING,
-    CHAR,
-    NUMBER,
-    LEFT_PARAN,
-    RIGHT_PARAN,
-    LEFT_BRACE,
-    RIGHT_BRACE,
-    IDENTIFIER,
-
-    EQUALS,
-    NOT_EQUALS,
-    IS_EQUAL_TO,
-    IS_NOT_EQUAL_TO,
-    GREATER_THAN,
-    LESS_THAN,
-    GREATER_THAN_OR_EQUAL_TO,
-    LESS_THAN_OR_EQUAL_TO,
-
-    // operators
-    PLUS,
-    MINUS,
-    MULTIPLY,
-    DIVIDE,
-    MODULUS,
-
-    NONE,
-
-    NOT
-}
+import { KEYWORDS, TokenType } from "./tokens";
 
 export interface Token {
     type: TokenType;
@@ -74,7 +44,14 @@ export class Tokeniser {
                 this.currentPosition += 1
                 character = this.source.charAt(this.currentPosition)
                 continue
-            } else if (character == '=') {
+            } else if (character == '|') {
+                this.tokens.push({
+                    type: TokenType.PIPE,
+                    value: '|',
+                    startPos: this.currentPosition,
+                    endPos: this.currentPosition 
+                })
+            }else if (character == '=') {
                 let nextToken = this.getTokenAtIndex(this.currentPosition + 1)
                 this.tokens.push({
                     type: nextToken == '=' ? TokenType.EQUALS : TokenType.IS_EQUAL_TO,
@@ -153,7 +130,7 @@ export class Tokeniser {
                     return regexResult.length > 0   
                 })
                 this.tokens.push({
-                    type: TokenType.IDENTIFIER,
+                    type: KEYWORDS.includes(value) ? TokenType.KEYWORD : TokenType.IDENTIFIER,
                     value: value,
                     startPos: startPos,
                     endPos: this.currentPosition

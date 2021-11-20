@@ -1,3 +1,1 @@
-print(len("hellowrd") == 43.3, "d")
-
-print(len("hellowrd") >= 43.3, "d")
+var j = 0
