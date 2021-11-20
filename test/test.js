@@ -9,7 +9,8 @@ const lm = function(jjjj){}
 let j = 444234
 
 function hello(j, m=9){
-    console.log("shit")
+    let mmfmerfe=39848239482938498
+    let jiefjerjf=342342
 }
 f(9)
 

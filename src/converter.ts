@@ -2,13 +2,14 @@ import { parse } from "seafox"
 import { types } from "./constants"
 import { VariableDeclarationNode } from "./nodes"
 import { Exception } from './exception'
-import { FunctionDefiniton } from "./function"
+import { FunctionDefiniton, getFunctionParameters } from "./function"
+import { redBright } from "chalk"
 
 interface ProgramBody {
     type: string,
-    sourceType: string,
-    start: number,
-    end: number,
+    sourceType?: string,
+    start?: number,
+    end?: number,
     body: any[]
 }
 
@@ -24,6 +25,10 @@ export class Converter {
             module: true,
             loc: true
         }) as ProgramBody
+    }
+
+    public setProgramNode(programNode:ProgramBody){
+        this.programNode = programNode
     }
 
     // private arrowFunctionDefinition()
@@ -56,8 +61,15 @@ export class Converter {
                 continue
             } else if(node.type == "FunctionDeclaration"){
                 this.output += FunctionDefiniton.fromFunctionDeclaration(node)
+            } else if(node.type == "ExpressionStatement"){
+                const expression = node.expression
+                if(expression.type == "CallExpression"){
+                    const functionName = expression.callee.name
+                    const params = getFunctionParameters(expression.arguments)
+                    this.output += `${functionName}${params}\n`
+                }
             }
-        }   
+            }   
         return this.output
     }
 

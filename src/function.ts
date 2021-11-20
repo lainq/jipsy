@@ -1,4 +1,5 @@
 import exp from "constants"
+import { Converter } from "./converter"
 import { Exception } from "./exception"
 
 export const getFunctionParameters = (params:Array<any>):string => {
@@ -12,10 +13,18 @@ export const getFunctionParameters = (params:Array<any>):string => {
             const value = 
                 current.right.value != undefined ? current.right.value : current.right.name
             params_ += `${paramName}=${value},`
+        } else if(current.type == "Literal"){
+            params_ += current.value + ","
         }
     }
     params_ = params_.slice(0, -1) + ")"
     return params_
+}
+
+export const generateFunctionBody = (body:any[]):string => {
+    const converter = new Converter("")
+    converter.setProgramNode({type:"Program", body:body})
+    return converter.generateOutput()
 }
 
 export class FunctionDefiniton {
@@ -25,8 +34,12 @@ export class FunctionDefiniton {
             new Exception({message:"Async not supported yet:/"})
         }
         const name = expression.id.name
-        output += `def ${name}${getFunctionParameters(expression.init.params)}:\n\tpass`
-
+        let body = generateFunctionBody(expression.init.body.body)
+        body = body.replace("\n", "\n\t")
+        output += `def ${name}${getFunctionParameters(expression.init.params)}:\n${
+            body.length > 0 ? body : "\tpass"
+        }`        
+        console.log(body.length)
         output += "\n\n\n"
         return output
     }
@@ -35,7 +48,11 @@ export class FunctionDefiniton {
         let output = ""
         const name = expression.id.name
         const params = getFunctionParameters(expression.params)
-        output += `def ${name}${params}:\n\tpass\n\n\n`
+        let body = generateFunctionBody(expression.body.body)
+        body = body.replace("\n", "\n\t")
+        output += `def ${name}${params}:\n\t${
+            body.length > 0 ? body : "\tpass"
+        }\n\n`        
         return output
     }
 }
