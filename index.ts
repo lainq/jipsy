@@ -4,7 +4,6 @@ import { ArgumentParser, ArgumentParserResults } from "./src/argument";
 import { Converter } from "./src/converter";
 import { Exception } from "./src/exception";
 
-
 const performCommand = (result: ArgumentParserResults): void => {
   switch (result.command) {
     case "help":
@@ -23,8 +22,8 @@ const performCommand = (result: ArgumentParserResults): void => {
       }
       let content = readFileSync(result.command).toString();
       let converter = new Converter(content);
-      const output = converter.generateOutput()
-      writeFileSync('out.py', output)
+      const output = converter.generateOutput();
+      writeFileSync("out.py", output);
   }
 };
 
