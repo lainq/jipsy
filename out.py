@@ -1,17 +1,3 @@
-kkkkkk:int = 3
-def f(mgmg,l=234234,diwe=kkkkkk):
-	pass
-
-
-def lm(jjjj):
-	pass
-
-
-j:int = 444234
-def hello(j,m=9):
-	mmfmerfe:int = 39848239482938500
-	jiefjerjf:int = 342342
-
-
-f(9)
-m:int = 4234234
+m:str="jiewjdjew"
+fjerjfe:int=4245353
+fref={"gdyayyaa":"9040923094289-","tstrtest":9884}

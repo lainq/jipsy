@@ -13,10 +13,22 @@ export interface VariableDeclarationNode {
   declarations: Array<any>;
 }
 
-// export interface ArrowFunctionExpression {
-//     type: string,
-//     params: Array<{
-//         tyoe: string,
-//         name:
-//     }>
-// }
+interface ObjectExpressionProperty {
+  type: string,
+  key: {
+    type: string,
+    name? :string,
+    value?:any
+  },
+  value: {
+    type: string,
+    name? :string,
+    value?:any
+  }
+}
+
+export interface ObjectExpression {
+  type: string,
+  properties: ObjectExpressionProperty[],
+  loc: Loc
+}

@@ -1,9 +1,8 @@
 import { parse } from "seafox";
-import { types } from "./constants";
+import { types, getLiteralValue } from "./constants";
 import { VariableDeclarationNode } from "./nodes";
-import { Exception } from "./exception";
 import { FunctionDefiniton, getFunctionParameters } from "./function";
-import { redBright } from "chalk";
+import { getObjectExpressionValue } from "./objects";
 
 interface ProgramBody {
   type: string;
@@ -32,7 +31,8 @@ export class Converter {
 
   // private arrowFunctionDefinition()
 
-  private declareVariable(node: VariableDeclarationNode) {
+  private declareVariable(node: VariableDeclarationNode):string {
+    let output:string = ""
     for (let index = 0; index < node.declarations.length; index++) {
       const declaration = node.declarations[index];
       if (
@@ -40,10 +40,14 @@ export class Converter {
           declaration.init.type
         )
       ) {
-        this.output += FunctionDefiniton.fromArrowFunction(declaration);
+        output += FunctionDefiniton.fromArrowFunction(declaration);
         continue;
       }
       const name = declaration.id.name;
+      if(declaration.init.type == "ObjectExpression"){
+        output += name + "=" + getObjectExpressionValue(declaration.init)
+        continue
+      }
       const value = declaration.init
         ? declaration.init.value != undefined
           ? declaration.init.value
@@ -53,26 +57,33 @@ export class Converter {
       const type: string = typeFunction ? `:${typeFunction(value)}` : "";
 
       const valueString: string = value ? `= ${value}` : "= None";
-      this.output += `${name}${type} ${valueString}\n`;
+      output += `${name}${type}=${getLiteralValue(value, type)}\n`
     }
+    return output
   }
 
   public generateOutput(): string {
     const body = this.programNode.body;
     for (let index = 0; index < body.length; index++) {
       const node = body[index];
-      if (node.type === "VariableDeclaration") {
-        this.declareVariable(node);
-        continue;
-      } else if (node.type == "FunctionDeclaration") {
-        this.output += FunctionDefiniton.fromFunctionDeclaration(node);
-      } else if (node.type == "ExpressionStatement") {
-        const expression = node.expression;
-        if (expression.type == "CallExpression") {
-          const functionName = expression.callee.name;
-          const params = getFunctionParameters(expression.arguments);
-          this.output += `${functionName}${params}\n`;
-        }
+      switch (node.type) {
+        case "VariableDeclaration":
+          this.output += this.declareVariable(node)
+          break
+        case "ExpressionStatement":
+          const expression = node.expression;
+          if(expression.type == "CallExpression"){
+            const functionName = expression.callee.name;
+            const parameters = getFunctionParameters(expression.arguments);
+            this.output += `${functionName}${parameters}\n`;
+          }
+          break
+        case 'FunctionDeclaration':
+          this.output += FunctionDefiniton.fromFunctionDeclaration(node);
+          break
+        default:
+          console.log(node)
+          break
       }
     }
     return this.output;
