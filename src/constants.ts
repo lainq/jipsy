@@ -1,3 +1,6 @@
+import { FunctionDefiniton } from "./function";
+import { getObjectExpressionValue } from "./objects";
+
 export const types: Map<string, Function> = new Map([
   [
     "number",
@@ -16,7 +19,6 @@ export const types: Map<string, Function> = new Map([
   ]
 ]);
 
-
 export const getLiteralValue = (value:string, type:string):string => {
   let valueString = value
   switch(type.slice(1)){
@@ -26,4 +28,24 @@ export const getLiteralValue = (value:string, type:string):string => {
 
   }    
   return `${valueString}`
+}
+
+
+export const getValue = (value:any):string => {
+  switch(value.type){
+    case 'Literal':
+      const typeFunction = types.get(typeof(value.value))
+      const typeString = typeFunction ? `:${typeFunction(value.value)}` : ''
+      return getLiteralValue(value.value, typeString)
+    case 'ObjectExpression':
+      return getObjectExpressionValue(value)
+    case 'ArrowFunctionExpression':
+      return FunctionDefiniton.fromArrowFunction(value)
+    case 'FunctionExpression':
+      return FunctionDefiniton.fromArrowFunction(value)
+    case 'Identifier':
+      return value.name
+    default:
+      return ''
+  }  
 }

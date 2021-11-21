@@ -1,5 +1,5 @@
 import { parse } from "seafox";
-import { types, getLiteralValue } from "./constants";
+import { types, getLiteralValue, getValue } from "./constants";
 import { VariableDeclarationNode } from "./nodes";
 import { FunctionDefiniton, getFunctionParameters } from "./function";
 import { getObjectExpressionValue } from "./objects";
@@ -29,8 +29,6 @@ export class Converter {
     this.programNode = programNode;
   }
 
-  // private arrowFunctionDefinition()
-
   private declareVariable(node: VariableDeclarationNode):string {
     let output:string = ""
     for (let index = 0; index < node.declarations.length; index++) {
@@ -40,7 +38,7 @@ export class Converter {
           declaration.init.type
         )
       ) {
-        output += FunctionDefiniton.fromArrowFunction(declaration);
+        output += FunctionDefiniton.fromArrowFunction(declaration.init, declaration.id.name);
         continue;
       }
       const name = declaration.id.name;
@@ -80,6 +78,9 @@ export class Converter {
           break
         case 'FunctionDeclaration':
           this.output += FunctionDefiniton.fromFunctionDeclaration(node);
+          break
+        case 'ReturnStatement':
+          this.output += `\treturn ${getValue(node.argument)}`
           break
         default:
           console.log(node)

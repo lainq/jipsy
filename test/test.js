@@ -1,24 +1,20 @@
-// let kkkkkk = 3;
-// const f = (mgmg, l = 234234, diwe = kkkkkk) => {
-//   return l;
-// };
-// // function rf(l) {
-// //     return l
-// // }
-// const lm = function (jjjj) {};
-// let j = 444234;
+const f = () => {
+  return "shit"
+}
 
-// function hello(j, m = 9) {
-//   let mmfmerfe = 39848239482938498;
-//   let jiefjerjf = 342342;
-//   return {
-//     helloworld:"mhm"
-//   }
-// }
-// f(9);
+const lrfke = () => {
+  return {}
+}
 
-// let m = 4234234;
+const jfjr = () => {
+  return () => {}
+}
 
-let m = "jiewjdjew"
-let fjerjfe=4245353
-let fref = {gdyayyaa:"9040923094289-", "tstrtest":9884}
+const ijfr9erf = () => {
+  return function(){}
+}
+
+const eerfe = () => {
+  let f = 9
+  return f
+}

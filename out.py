@@ -1,3 +1,27 @@
-m:str="jiewjdjew"
-fjerjfe:int=4245353
-fref={"gdyayyaa":"9040923094289-","tstrtest":9884}
+def f():
+	return "shit"
+
+
+def lrfke():
+	return {}
+
+
+def jfjr():
+	return lambda :	pass
+	
+
+
+
+
+def ijfr9erf():
+	return lambda :	pass
+	
+
+
+
+
+def eerfe():
+f:int=9
+		return f
+
+

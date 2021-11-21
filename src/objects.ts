@@ -20,6 +20,8 @@ export const getObjectExpressionValue = (expression:ObjectExpression) => {
         let value = property.value
         output += `${getValue(key)}:${getValue(value)},`
     }
-    output = output.slice(0, -1)
+    if(output.length > 1){
+        output = output.slice(0, -1)
+    }
     return output + "}"
 }

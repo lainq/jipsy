@@ -19,8 +19,10 @@ export const getFunctionParameters = (params: Array<any>): string => {
       params_ += current.value + ",";
     }
   }
-  params_ = params_.slice(0, -1) + ")";
-  return params_;
+  if(params_.length > 1){
+    params_ = params_.slice(0, -1);
+  }
+  return params_ + ")";
 };
 
 export const generateFunctionBody = (body: any[]): string => {
@@ -30,18 +32,23 @@ export const generateFunctionBody = (body: any[]): string => {
 };
 
 export class FunctionDefiniton {
-  public static fromArrowFunction(expression: any): string {
+  public static fromArrowFunction(expression: any, name?:string): string {
     let output = "";
-    if (expression.init.async) {
+    if (expression.async) {
       new Exception({ message: "Async not supported yet:/" });
     }
-    const name = expression.id.name;
-    let body = generateFunctionBody(expression.init.body.body);
+    let body = generateFunctionBody(expression.body.body);
     body = body.replace("\n", "\n\t");
-    output += `def ${name}${getFunctionParameters(expression.init.params)}:\n${
-      body.length > 0 ? body : "\tpass"
-    }`;
-    console.log(body.length);
+    const params = getFunctionParameters(expression.params)
+    if(name){
+      output += `def ${name}${params}:\n${
+        body.length > 0 ? body : "\tpass"
+      }`;
+    } else {
+      output += `lambda ${params.slice(1).slice(0, -1)}:${
+        body.length > 0 ? body : "\tpass"
+      }`
+    }
     output += "\n\n\n";
     return output;
   }
