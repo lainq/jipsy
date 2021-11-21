@@ -9,12 +9,19 @@ interface ProgramBody {
   sourceType?: string;
   start?: number;
   end?: number;
+
+  // All the nodes in the program
   body: any[];
 }
 
 export class Converter {
+  // The source string to be converted
+  // into a program body
   private convert: string;
   private programNode: ProgramBody;
+
+  // The output which is dumped into
+  // the outfile after conversion
   private output: string = ``;
 
   constructor(convert: string) {
@@ -25,6 +32,9 @@ export class Converter {
     }) as ProgramBody;
   }
 
+  /**
+   * Change the program body
+   */
   public setProgramNode(programNode: ProgramBody) {
     this.programNode = programNode;
   }

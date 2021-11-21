@@ -1,6 +1,7 @@
 import { FunctionDefiniton } from "./function";
 import { getObjectExpressionValue } from "./objects";
 
+// javascript types and python types
 export const types: Map<string, Function> = new Map([
   [
     "number",
@@ -18,6 +19,7 @@ export const types: Map<string, Function> = new Map([
     'object', (value:any) => "dict"
   ]
 ]);
+
 
 export const getLiteralValue = (value:string, type:string):string => {
   let valueString = value

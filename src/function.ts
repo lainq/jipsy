@@ -2,6 +2,17 @@ import exp from "constants";
 import { Converter } from "./converter";
 import { Exception } from "./exception";
 
+/**
+ * @exports
+ * @constant
+ * 
+ * Generate the parameter string with the params.
+ * Params can be an Identifier, AssignmentPattern 
+ * or a Literal
+ * 
+ * @param params 
+ * @returns 
+ */
 export const getFunctionParameters = (params: Array<any>): string => {
   let params_ = "(";
   for (let index = 0; index < params.length; index++) {
@@ -16,6 +27,8 @@ export const getFunctionParameters = (params: Array<any>): string => {
           : current.right.name;
       params_ += `${paramName}=${value},`;
     } else if (current.type == "Literal") {
+      // Literal is not used for function definitions
+      // instead, it is used for function calls
       params_ += current.value + ",";
     }
   }
@@ -32,6 +45,20 @@ export const generateFunctionBody = (body: any[]): string => {
 };
 
 export class FunctionDefiniton {
+  /**
+   * @public
+   * @static
+   * 
+   * The expression recived is the `declaration.init` value.
+   * The name recieved is the name of the function whihc can be
+   * optional. The function is conidered an anonymous function or 
+   * a lambda if the name isn't specified
+   * 
+   * 
+   * @param expression The expression containing the arguments and values
+   * @param name The name of the function. 
+   * @returns 
+   */
   public static fromArrowFunction(expression: any, name?:string): string {
     let output = "";
     if (expression.async) {
@@ -40,6 +67,9 @@ export class FunctionDefiniton {
     let body = generateFunctionBody(expression.body.body);
     body = body.replace("\n", "\n\t");
     const params = getFunctionParameters(expression.params)
+
+    // If the name is not defined. The functional is considred
+    // as an anonymous function or a lambda function
     if(name){
       output += `def ${name}${params}:\n${
         body.length > 0 ? body : "\tpass"
@@ -53,6 +83,16 @@ export class FunctionDefiniton {
     return output;
   }
 
+  /**
+   * @public
+   * @static
+   * 
+   * FunctionDeclaration node is different from FunctionExpression
+   * or ArrowFunctionExpression.
+   * 
+   * @param expression 
+   * @returns 
+   */
   public static fromFunctionDeclaration(expression: any): string {
     let output = "";
     const name = expression.id.name;

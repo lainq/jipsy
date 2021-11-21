@@ -12,6 +12,12 @@ const getValue = (expression:any):string => {
     return output
 }
 
+/**
+ * Generate a python dict with the values from a
+ * javascript object expression
+ * @param expression 
+ * @returns 
+ */
 export const getObjectExpressionValue = (expression:ObjectExpression) => {
     let output = "{"
     for(let index=0; index<expression.properties.length; index++){

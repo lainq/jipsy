@@ -6,6 +6,9 @@ interface Loc {
 type VariableDeclarationKind = "const" | "var" | "let";
 
 export interface VariableDeclarationNode {
+  // The type of variable declaration
+  // const for immutable variables, and var and let
+  // for mutable variables
   kind: VariableDeclarationKind;
   start: number;
   end: number;
@@ -29,6 +32,7 @@ interface ObjectExpressionProperty {
 
 export interface ObjectExpression {
   type: string,
+  // The object properties containing the key and value
   properties: ObjectExpressionProperty[],
   loc: Loc
 }
