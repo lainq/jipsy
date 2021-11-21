@@ -39,8 +39,8 @@ export class Converter {
     this.programNode = programNode;
   }
 
-  private declareVariable(node: VariableDeclarationNode):string {
-    let output:string = ""
+  private declareVariable(node: VariableDeclarationNode): string {
+    let output: string = "";
     for (let index = 0; index < node.declarations.length; index++) {
       const declaration = node.declarations[index];
       if (
@@ -48,13 +48,16 @@ export class Converter {
           declaration.init.type
         )
       ) {
-        output += FunctionDefiniton.fromArrowFunction(declaration.init, declaration.id.name);
+        output += FunctionDefiniton.fromArrowFunction(
+          declaration.init,
+          declaration.id.name
+        );
         continue;
       }
       const name = declaration.id.name;
-      if(declaration.init.type == "ObjectExpression"){
-        output += name + "=" + getObjectExpressionValue(declaration.init)
-        continue
+      if (declaration.init.type == "ObjectExpression") {
+        output += name + "=" + getObjectExpressionValue(declaration.init);
+        continue;
       }
       const value = declaration.init
         ? declaration.init.value != undefined
@@ -65,9 +68,9 @@ export class Converter {
       const type: string = typeFunction ? `:${typeFunction(value)}` : "";
 
       const valueString: string = value ? `= ${value}` : "= None";
-      output += `${name}${type}=${getLiteralValue(value, type)}\n`
+      output += `${name}${type}=${getLiteralValue(value, type)}\n`;
     }
-    return output
+    return output;
   }
 
   public generateOutput(): string {
@@ -76,25 +79,25 @@ export class Converter {
       const node = body[index];
       switch (node.type) {
         case "VariableDeclaration":
-          this.output += this.declareVariable(node)
-          break
+          this.output += this.declareVariable(node);
+          break;
         case "ExpressionStatement":
           const expression = node.expression;
-          if(expression.type == "CallExpression"){
+          if (expression.type == "CallExpression") {
             const functionName = expression.callee.name;
             const parameters = getFunctionParameters(expression.arguments);
             this.output += `${functionName}${parameters}\n`;
           }
-          break
-        case 'FunctionDeclaration':
+          break;
+        case "FunctionDeclaration":
           this.output += FunctionDefiniton.fromFunctionDeclaration(node);
-          break
-        case 'ReturnStatement':
-          this.output += `\treturn ${getValue(node.argument)}`
-          break
+          break;
+        case "ReturnStatement":
+          this.output += `\treturn ${getValue(node.argument)}`;
+          break;
         default:
-          console.log(node)
-          break
+          console.log(node);
+          break;
       }
     }
     return this.output;

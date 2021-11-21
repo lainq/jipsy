@@ -5,13 +5,13 @@ import { Exception } from "./exception";
 /**
  * @exports
  * @constant
- * 
+ *
  * Generate the parameter string with the params.
- * Params can be an Identifier, AssignmentPattern 
+ * Params can be an Identifier, AssignmentPattern
  * or a Literal
- * 
- * @param params 
- * @returns 
+ *
+ * @param params
+ * @returns
  */
 export const getFunctionParameters = (params: Array<any>): string => {
   let params_ = "(";
@@ -32,7 +32,7 @@ export const getFunctionParameters = (params: Array<any>): string => {
       params_ += current.value + ",";
     }
   }
-  if(params_.length > 1){
+  if (params_.length > 1) {
     params_ = params_.slice(0, -1);
   }
   return params_ + ")";
@@ -48,36 +48,34 @@ export class FunctionDefiniton {
   /**
    * @public
    * @static
-   * 
+   *
    * The expression recived is the `declaration.init` value.
    * The name recieved is the name of the function whihc can be
-   * optional. The function is conidered an anonymous function or 
+   * optional. The function is conidered an anonymous function or
    * a lambda if the name isn't specified
-   * 
-   * 
+   *
+   *
    * @param expression The expression containing the arguments and values
-   * @param name The name of the function. 
-   * @returns 
+   * @param name The name of the function.
+   * @returns
    */
-  public static fromArrowFunction(expression: any, name?:string): string {
+  public static fromArrowFunction(expression: any, name?: string): string {
     let output = "";
     if (expression.async) {
       new Exception({ message: "Async not supported yet:/" });
     }
     let body = generateFunctionBody(expression.body.body);
     body = body.replace("\n", "\n\t");
-    const params = getFunctionParameters(expression.params)
+    const params = getFunctionParameters(expression.params);
 
     // If the name is not defined. The functional is considred
     // as an anonymous function or a lambda function
-    if(name){
-      output += `def ${name}${params}:\n${
-        body.length > 0 ? body : "\tpass"
-      }`;
+    if (name) {
+      output += `def ${name}${params}:\n${body.length > 0 ? body : "\tpass"}`;
     } else {
       output += `lambda ${params.slice(1).slice(0, -1)}:${
         body.length > 0 ? body : "\tpass"
-      }`
+      }`;
     }
     output += "\n\n\n";
     return output;
@@ -86,12 +84,12 @@ export class FunctionDefiniton {
   /**
    * @public
    * @static
-   * 
+   *
    * FunctionDeclaration node is different from FunctionExpression
    * or ArrowFunctionExpression.
-   * 
-   * @param expression 
-   * @returns 
+   *
+   * @param expression
+   * @returns
    */
   public static fromFunctionDeclaration(expression: any): string {
     let output = "";

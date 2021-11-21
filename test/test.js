@@ -1,20 +1,20 @@
 const f = () => {
-  return "shit"
-}
+  return "shit";
+};
 
 const lrfke = () => {
-  return {}
-}
+  return {};
+};
 
 const jfjr = () => {
-  return () => {}
-}
+  return () => {};
+};
 
 const ijfr9erf = () => {
-  return function(){}
-}
+  return function () {};
+};
 
 const eerfe = () => {
-  let f = 9
-  return f
-}
+  let f = 9;
+  return f;
+};

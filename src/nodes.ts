@@ -17,22 +17,22 @@ export interface VariableDeclarationNode {
 }
 
 interface ObjectExpressionProperty {
-  type: string,
+  type: string;
   key: {
-    type: string,
-    name? :string,
-    value?:any
-  },
+    type: string;
+    name?: string;
+    value?: any;
+  };
   value: {
-    type: string,
-    name? :string,
-    value?:any
-  }
+    type: string;
+    name?: string;
+    value?: any;
+  };
 }
 
 export interface ObjectExpression {
-  type: string,
+  type: string;
   // The object properties containing the key and value
-  properties: ObjectExpressionProperty[],
-  loc: Loc
+  properties: ObjectExpressionProperty[];
+  loc: Loc;
 }
