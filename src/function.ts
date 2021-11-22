@@ -105,10 +105,10 @@ export class FunctionDefiniton {
   }
 
   public static fromMethodDefinition(expression: any): string {
-    let output = ""
+    let output = "";
     const key = expression.key.name;
     const value = getValue(expression.value, key);
     output += `${value}`;
-    return output    
+    return output;
   }
 }

@@ -38,8 +38,8 @@ export interface ObjectExpression {
 }
 
 export interface ClassDefinition {
-  type: string,
-  id: any,
-  superClass: any,
-  body:any
+  type: string;
+  id: any;
+  superClass: any;
+  body: any;
 }

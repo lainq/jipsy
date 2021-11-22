@@ -28,7 +28,7 @@ export const getLiteralValue = (value: string, type: string): string => {
   return `${valueString}`;
 };
 
-export const getValue = (value: any, name?:string): string => {
+export const getValue = (value: any, name?: string): string => {
   switch (value.type) {
     case "Literal":
       const typeFunction = types.get(typeof value.value);
