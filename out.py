@@ -1,3 +1,5 @@
+class LOLL(23423):def getLol():
 d:int=0
-d=88984823948384
-d*=333
+	
+
+

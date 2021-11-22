@@ -1,4 +1,5 @@
 import exp from "constants";
+import { getValue } from "./constants";
 import { Converter } from "./converter";
 import { Exception } from "./exception";
 
@@ -101,5 +102,13 @@ export class FunctionDefiniton {
       body.length > 0 ? body : "\tpass"
     }\n\n`;
     return output;
+  }
+
+  public static fromMethodDefinition(expression: any): string {
+    let output = ""
+    const key = expression.key.name;
+    const value = getValue(expression.value, key);
+    output += `${value}`;
+    return output    
   }
 }

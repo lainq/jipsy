@@ -28,7 +28,7 @@ export const getLiteralValue = (value: string, type: string): string => {
   return `${valueString}`;
 };
 
-export const getValue = (value: any): string => {
+export const getValue = (value: any, name?:string): string => {
   switch (value.type) {
     case "Literal":
       const typeFunction = types.get(typeof value.value);
@@ -37,9 +37,9 @@ export const getValue = (value: any): string => {
     case "ObjectExpression":
       return getObjectExpressionValue(value);
     case "ArrowFunctionExpression":
-      return FunctionDefiniton.fromArrowFunction(value);
+      return FunctionDefiniton.fromArrowFunction(value, name);
     case "FunctionExpression":
-      return FunctionDefiniton.fromArrowFunction(value);
+      return FunctionDefiniton.fromArrowFunction(value, name);
     case "Identifier":
       return value.name;
     default:

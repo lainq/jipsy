@@ -1,5 +1,6 @@
-let d = 0
 
-d = 88984823948384
-d *= 333
-d*d
+class LOLL extends 23423 {
+  getLol(){
+    let d = 0
+  }
+}

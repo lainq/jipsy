@@ -3,6 +3,7 @@ import { types, getLiteralValue, getValue } from "./constants";
 import { VariableDeclarationNode } from "./nodes";
 import { FunctionDefiniton, getFunctionParameters } from "./function";
 import { getObjectExpressionValue } from "./objects";
+import { ClassBody } from "./classes";
 
 interface ProgramBody {
   type: string;
@@ -75,6 +76,7 @@ export class Converter {
 
   public generateOutput(): string {
     const body = this.programNode.body;
+    console.log(body.length)
     for (let index = 0; index < body.length; index++) {
       const node = body[index];
       switch (node.type) {
@@ -92,6 +94,8 @@ export class Converter {
             const right = getValue(expression.right);
             const operator = expression.operator;
             this.output += `${left}${operator}${right}\n`;
+          } else {
+            console.log(`expression : ${expression}`)
           }
           break;
         case "FunctionDeclaration":
@@ -100,6 +104,13 @@ export class Converter {
         case "ReturnStatement":
           this.output += `\treturn ${getValue(node.argument)}`;
           break;
+        case 'ClassDeclaration':
+          const classBody = new ClassBody(node)
+          this.output += classBody.getOutput()
+          break
+        case 'MethodDefinition':
+          this.output += FunctionDefiniton.fromMethodDefinition(node)
+          break
         default:
           console.log(node);
           break;

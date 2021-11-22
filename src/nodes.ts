@@ -36,3 +36,10 @@ export interface ObjectExpression {
   properties: ObjectExpressionProperty[];
   loc: Loc;
 }
+
+export interface ClassDefinition {
+  type: string,
+  id: any,
+  superClass: any,
+  body:any
+}
