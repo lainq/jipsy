@@ -18,7 +18,7 @@ export class ClassBody {
   public getOutput(): string {
     const name = this.id.name;
     const superClass = this.superClass ? getValue(this.superClass) : "";
-    this.output = `class ${name}(${superClass}):`;
+    this.output = `class ${name}(${superClass}):\n`;
 
     const converter = new Converter("");
     converter.setProgramNode({ type: "Program", body: this.body.body });

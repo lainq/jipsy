@@ -1,4 +1,4 @@
-import { FunctionDefiniton } from "./function";
+import { FunctionDefiniton, getFunctionParameters } from "./function";
 import { getObjectExpressionValue } from "./objects";
 
 // javascript types and python types
@@ -42,6 +42,10 @@ export const getValue = (value: any, name?: string): string => {
       return FunctionDefiniton.fromArrowFunction(value, name);
     case "Identifier":
       return value.name;
+    case "CallExpression":
+      const functionName = value.callee.name;
+      const parameters = getFunctionParameters(value.arguments);
+      return `${name ? name : ""}=${functionName}${parameters}\n`;
     default:
       return "";
   }

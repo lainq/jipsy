@@ -1,7 +1,15 @@
-import exp from "constants";
 import { getValue } from "./constants";
 import { Converter } from "./converter";
 import { Exception } from "./exception";
+
+export const addTabs = (value: string): string => {
+  let valueArray: string[] = [];
+  let lines = value.split("\n");
+  for (let index = 0; index < lines.length; index++) {
+    valueArray.push("\t" + lines[index]);
+  }
+  return valueArray.join("\n");
+};
 
 /**
  * @exports
@@ -72,13 +80,22 @@ export class FunctionDefiniton {
     // If the name is not defined. The functional is considred
     // as an anonymous function or a lambda function
     if (name) {
-      output += `def ${name}${params}:\n${body.length > 0 ? body : "\tpass"}`;
+      output += `def ${name}${params}:\n${
+        body.length > 0 ? addTabs(body) : "\tpass"
+      }`;
     } else {
       output += `lambda ${params.slice(1).slice(0, -1)}:${
         body.length > 0 ? body : "\tpass"
       }`;
     }
-    output += "\n\n\n";
+    console.log(
+      name,
+      "\n",
+      body,
+      body.split("\n").length,
+      body.split("\t").length
+    );
+    output += "\n";
     return output;
   }
 
@@ -99,7 +116,7 @@ export class FunctionDefiniton {
     let body = generateFunctionBody(expression.body.body);
     body = body.replace("\n", "\n\t");
     output += `def ${name}${params}:\n\t${
-      body.length > 0 ? body : "\tpass"
+      body.length > 0 ? addTabs(body) : "\tpass"
     }\n\n`;
     return output;
   }
@@ -108,7 +125,7 @@ export class FunctionDefiniton {
     let output = "";
     const key = expression.key.name;
     const value = getValue(expression.value, key);
-    output += `${value}`;
+    output += value.replace("\n", "\n\t");
     return output;
   }
 }

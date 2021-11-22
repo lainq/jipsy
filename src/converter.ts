@@ -54,6 +54,9 @@ export class Converter {
           declaration.id.name
         );
         continue;
+      } else if (declaration.init.type == "CallExpression") {
+        output += getValue(declaration.init, declaration.id.name);
+        continue;
       }
       const name = declaration.id.name;
       if (declaration.init.type == "ObjectExpression") {
@@ -76,7 +79,6 @@ export class Converter {
 
   public generateOutput(): string {
     const body = this.programNode.body;
-    console.log(body.length);
     for (let index = 0; index < body.length; index++) {
       const node = body[index];
       switch (node.type) {
@@ -102,14 +104,14 @@ export class Converter {
           this.output += FunctionDefiniton.fromFunctionDeclaration(node);
           break;
         case "ReturnStatement":
-          this.output += `\treturn ${getValue(node.argument)}`;
+          this.output += `return ${getValue(node.argument)}`;
           break;
         case "ClassDeclaration":
           const classBody = new ClassBody(node);
           this.output += classBody.getOutput();
           break;
         case "MethodDefinition":
-          this.output += FunctionDefiniton.fromMethodDefinition(node);
+          this.output += `\t` + FunctionDefiniton.fromMethodDefinition(node);
           break;
         default:
           console.log(node);
