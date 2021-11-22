@@ -1,27 +1,3 @@
-def f():
-	return "shit"
-
-
-def lrfke():
-	return {}
-
-
-def jfjr():
-	return lambda :	pass
-	
-
-
-
-
-def ijfr9erf():
-	return lambda :	pass
-	
-
-
-
-
-def eerfe():
-f:int=9
-		return f
-
-
+d:int=0
+d=88984823948384
+d*=333

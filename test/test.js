@@ -1,20 +1,5 @@
-const f = () => {
-  return "shit";
-};
+let d = 0
 
-const lrfke = () => {
-  return {};
-};
-
-const jfjr = () => {
-  return () => {};
-};
-
-const ijfr9erf = () => {
-  return function () {};
-};
-
-const eerfe = () => {
-  let f = 9;
-  return f;
-};
+d = 88984823948384
+d *= 333
+d*d

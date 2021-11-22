@@ -87,6 +87,11 @@ export class Converter {
             const functionName = expression.callee.name;
             const parameters = getFunctionParameters(expression.arguments);
             this.output += `${functionName}${parameters}\n`;
+          } else if (expression.type == "AssignmentExpression") {
+            const left = getValue(expression.left);
+            const right = getValue(expression.right);
+            const operator = expression.operator;
+            this.output += `${left}${operator}${right}\n`;
           }
           break;
         case "FunctionDeclaration":
