@@ -1,3 +1,4 @@
-# Technetium
-
-<img src="https://avatars.githubusercontent.com/u/79608367?s=200&v=4">
+- For loops
+- Do while loops
+- Conditional statements
+- Ternary operator

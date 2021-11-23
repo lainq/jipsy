@@ -1,16 +1,12 @@
-def ll():
-	fer:int=4242
-		rferf:int=34234
-	rfrferferf:int=423423423
-	ferkfejrfijrefirejf:int=42
-	return fer
-class LOLL(SomeRandomClass):
-	def getLol():
-		d:int=0
+if d>3:
+	efe:int=4342
+	fewf:int=3
+	if efe>3:
+		efe:int=3
 		
-	def wkwfewfr9():
-		d:int=0
-		d242:int=0
-	d32234:int=2342
-	ferfre:int=2
-	
+elif feef===33:
+		efe:int=3
+		
+	else:
+		efe:int=3
+		

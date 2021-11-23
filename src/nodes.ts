@@ -43,3 +43,10 @@ export interface ClassDefinition {
   superClass: any;
   body: any;
 }
+
+export interface IfStatement {
+  type: string,
+  test: any,
+  consequent: any;
+  alternate: any | null
+}

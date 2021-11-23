@@ -1,9 +1,10 @@
 import { parse } from "seafox";
 import { types, getLiteralValue, getValue } from "./constants";
 import { VariableDeclarationNode } from "./nodes";
-import { FunctionDefiniton, getFunctionParameters } from "./function";
+import { addTabs, FunctionDefiniton, getFunctionParameters } from "./function";
 import { getObjectExpressionValue } from "./objects";
 import { ClassBody } from "./classes";
+import { Conditionals } from "./conditionals";
 
 interface ProgramBody {
   type: string;
@@ -97,7 +98,7 @@ export class Converter {
             const operator = expression.operator;
             this.output += `${left}${operator}${right}\n`;
           } else {
-            console.log(`expression : ${expression}`);
+            this.output += getValue(expression);
           }
           break;
         case "FunctionDeclaration":
@@ -112,6 +113,19 @@ export class Converter {
           break;
         case "MethodDefinition":
           this.output += `\t` + FunctionDefiniton.fromMethodDefinition(node);
+          break;
+        case 'WhileStatement':
+          const testCondition = getValue(node.test)
+
+          const converter = new Converter("")
+          converter.setProgramNode(node.body)
+
+          const body = addTabs(converter.generateOutput())
+          this.output += `while ${testCondition}:\n${body}`
+          break;
+        case 'IfStatement':
+          const conditional = new Conditionals(node)
+          this.output += conditional.generateOutput()
           break;
         default:
           console.log(node);

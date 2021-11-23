@@ -1,20 +1,13 @@
-const ll = () => {
-  let fer = 4242;
-  let rferf = 34234;
-  let rfrferferf = 423423423;
-  let ferkfejrfijrefirejf = 42;
-  return fer;
-};
+if(d > 3){
+  let efe=4342
+  let fewf=3
 
-class LOLL extends SomeRandomClass {
-  getLol() {
-    let d = 0;
+  if(efe>3){
+    let efe=3
   }
-
-  wkwfewfr9() {
-    let d = 0;
-    let d242 = 0;
-    let d32234 = 2342;
-    let ferfre = 2;
-  }
+} else if(feef===33){
+  let efe=3
+} else {
+  let efe=3
 }
+
