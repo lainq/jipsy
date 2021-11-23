@@ -27,18 +27,18 @@ export class Conditionals {
 
             const alternateConverter = new Converter("")
             alternateConverter.setProgramNode(parameter)
-            alternateBody = addTabs(alternateConverter.generateOutput())
+            alternateBody = "\t" + alternateConverter.generateOutput()
         }
 
         this.output += `if ${testCondition}:\n${bodyString}`
         if(alternateBody.length > 0){
             const type = alternate.type
             if(type == 'IfStatement'){
-                this.output += `\nel${alternateBody.slice(1)}`
+                this.output += `\nel${alternateBody.slice(1)}\n`
             } else {
                 this.output += `\nelse:\n${alternateBody}`
             }
-        }
+        } 
 
         return this.output
     }
