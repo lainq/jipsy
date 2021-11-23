@@ -114,18 +114,18 @@ export class Converter {
         case "MethodDefinition":
           this.output += `\t` + FunctionDefiniton.fromMethodDefinition(node);
           break;
-        case 'WhileStatement':
-          const testCondition = getValue(node.test)
+        case "WhileStatement":
+          const testCondition = getValue(node.test);
 
-          const converter = new Converter("")
-          converter.setProgramNode(node.body)
+          const converter = new Converter("");
+          converter.setProgramNode(node.body);
 
-          const body = addTabs(converter.generateOutput())
-          this.output += `while ${testCondition}:\n${body}`
+          const body = addTabs(converter.generateOutput());
+          this.output += `while ${testCondition}:\n${body}`;
           break;
-        case 'IfStatement':
-          const conditional = new Conditionals(node)
-          this.output += conditional.generateOutput()
+        case "IfStatement":
+          const conditional = new Conditionals(node);
+          this.output += conditional.generateOutput();
           break;
         default:
           console.log(node);

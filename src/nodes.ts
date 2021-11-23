@@ -45,8 +45,8 @@ export interface ClassDefinition {
 }
 
 export interface IfStatement {
-  type: string,
-  test: any,
+  type: string;
+  test: any;
   consequent: any;
-  alternate: any | null
+  alternate: any | null;
 }
