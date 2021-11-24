@@ -1,4 +1,4 @@
 - For loops
 - Do while loops
-- Conditional statements
 - Ternary operator
+- Complex data types in ternary operators

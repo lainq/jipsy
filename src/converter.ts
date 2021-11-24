@@ -60,9 +60,10 @@ export class Converter {
         continue;
       }
       const name = declaration.id.name;
-      if (declaration.init.type == "ObjectExpression") {
-        output += name + "=" + getObjectExpressionValue(declaration.init);
-        continue;
+      const literalTypes = ["ObjectExpression", "ConditionalExpression"]
+      if(literalTypes.includes(declaration.init.type)){
+        output += name + "=" + getValue(declaration.init) + "\n";
+        continue
       }
       const value = declaration.init
         ? declaration.init.value != undefined
@@ -88,18 +89,7 @@ export class Converter {
           break;
         case "ExpressionStatement":
           const expression = node.expression;
-          if (expression.type == "CallExpression") {
-            const functionName = expression.callee.name;
-            const parameters = getFunctionParameters(expression.arguments);
-            this.output += `${functionName}${parameters}\n`;
-          } else if (expression.type == "AssignmentExpression") {
-            const left = getValue(expression.left);
-            const right = getValue(expression.right);
-            const operator = expression.operator;
-            this.output += `${left}${operator}${right}\n`;
-          } else {
-            this.output += getValue(expression);
-          }
+          this.output += getValue(expression);
           break;
         case "FunctionDeclaration":
           this.output += FunctionDefiniton.fromFunctionDeclaration(node);

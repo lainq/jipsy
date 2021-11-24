@@ -45,12 +45,20 @@ export const getValue = (value: any, name?: string): string => {
     case "CallExpression":
       const functionName = value.callee.name;
       const parameters = getFunctionParameters(value.arguments);
-      return `${name ? name : ""}=${functionName}${parameters}\n`;
+      return `${name ? name + "=" : ""}${functionName}${parameters}\n`;
     case "BinaryExpression":
       const left = getValue(value.left);
       const right = getValue(value.right);
       const operator = value.operator;
       return `${left}${operator}${right}`;
+    case 'ConditionalExpression': 
+      const test = getValue(value.test);
+      const consequentValue = getValue(value.consequent);
+      const alternate = getValue(value.alternate);
+      return `${consequentValue} if ${test} else ${alternate}`
+    case 'ArrayExpression':
+      const values = value.elements.map((element:any) => {getValue(element)});
+      return `[${values.join(',')}]`
     default:
       return "";
   }
