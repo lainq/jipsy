@@ -52,7 +52,7 @@ export interface IfStatement {
 }
 
 export interface MemberExpression {
-  type: string,
+  type: string;
   object: any;
   computed: boolean;
   property: any;

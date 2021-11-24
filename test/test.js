@@ -1,1 +1,3 @@
-let m = lol.testing
+// const { LOADIPHLPAPI } = require("dns");
+
+let m = new LOADIPHLPAPI();

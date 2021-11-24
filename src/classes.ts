@@ -29,16 +29,17 @@ export class ClassBody {
   }
 }
 
-export const getMemberExpressionValue =(expression:MemberExpression):string => {
-  let output = ""
+export const getMemberExpressionValue = (
+  expression: MemberExpression
+): string => {
+  let output = "";
   const object = expression.object;
   const property = (expression.property as any).name;
-  if(object.type == "MemberExpression") {
+  if (object.type == "MemberExpression") {
     output += getMemberExpressionValue(object) + ".";
   } else {
-    output += (object as any).name + "."
-  } 
-  output += property
-  return output
-
-}
+    output += (object as any).name + ".";
+  }
+  output += property;
+  return output;
+};

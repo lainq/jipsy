@@ -29,6 +29,13 @@ export const getLiteralValue = (value: string, type: string): string => {
   return `${valueString}`;
 };
 
+const callExpressionValue = (expression: any, name?: string): string => {
+  const functionName =
+    expression.callee.name || getMemberExpressionValue(expression.callee);
+  const parameters = getFunctionParameters(expression.arguments);
+  return `${name ? name + "=" : ""}${functionName}${parameters}\n`;
+};
+
 export const getValue = (value: any, name?: string): string => {
   switch (value.type) {
     case "Literal":
@@ -44,26 +51,26 @@ export const getValue = (value: any, name?: string): string => {
     case "Identifier":
       return value.name;
     case "CallExpression":
-      const functionName = value.callee.name || getMemberExpressionValue(value.callee);
-      const parameters = getFunctionParameters(value.arguments);
-      return `${name ? name + "=" : ""}${functionName}${parameters}\n`;
+      return callExpressionValue(value, name);
+    case "NewExpression":
+      return callExpressionValue(value, name);
     case "BinaryExpression":
       const left = getValue(value.left);
       const right = getValue(value.right);
       const operator = value.operator;
       return `${left}${operator}${right}`;
-    case 'ConditionalExpression': 
+    case "ConditionalExpression":
       const test = getValue(value.test);
       const consequentValue = getValue(value.consequent);
       const alternate = getValue(value.alternate);
-      return `${consequentValue} if ${test} else ${alternate}`
-    case 'ArrayExpression':
-      const values = value.elements.map((element:any):string => {
-        return getValue(element)
-      })
-      return `[${values.join(',')}]`
-    case 'MemberExpression':
-      return getMemberExpressionValue(value)
+      return `${consequentValue} if ${test} else ${alternate}`;
+    case "ArrayExpression":
+      const values = value.elements.map((element: any): string => {
+        return getValue(element);
+      });
+      return `[${values.join(",")}]`;
+    case "MemberExpression":
+      return getMemberExpressionValue(value);
     default:
       return "";
   }

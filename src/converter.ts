@@ -59,10 +59,16 @@ export class Converter {
         continue;
       }
       const name = declaration.id.name;
-      const literalTypes = ["ObjectExpression", "ConditionalExpression", "ArrayExpression", "MemberExpression"]
-      if(literalTypes.includes(declaration.init.type)){
+      const literalTypes = [
+        "NewExpression",
+        "ObjectExpression",
+        "ConditionalExpression",
+        "ArrayExpression",
+        "MemberExpression",
+      ];
+      if (literalTypes.includes(declaration.init.type)) {
         output += name + "=" + getValue(declaration.init) + "\n";
-        continue
+        continue;
       }
       const value = declaration.init
         ? declaration.init.value != undefined

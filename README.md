@@ -2,3 +2,4 @@
 - Do while loops
 - Ternary operator
 - Complex data types in ternary operators
+- Switch statements
