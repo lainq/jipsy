@@ -1,3 +1,4 @@
+import { getMemberExpressionValue } from "./classes";
 import { FunctionDefiniton, getFunctionParameters } from "./function";
 import { getObjectExpressionValue } from "./objects";
 
@@ -43,7 +44,7 @@ export const getValue = (value: any, name?: string): string => {
     case "Identifier":
       return value.name;
     case "CallExpression":
-      const functionName = value.callee.name;
+      const functionName = value.callee.name || getMemberExpressionValue(value.callee);
       const parameters = getFunctionParameters(value.arguments);
       return `${name ? name + "=" : ""}${functionName}${parameters}\n`;
     case "BinaryExpression":
@@ -57,8 +58,12 @@ export const getValue = (value: any, name?: string): string => {
       const alternate = getValue(value.alternate);
       return `${consequentValue} if ${test} else ${alternate}`
     case 'ArrayExpression':
-      const values = value.elements.map((element:any) => {getValue(element)});
+      const values = value.elements.map((element:any):string => {
+        return getValue(element)
+      })
       return `[${values.join(',')}]`
+    case 'MemberExpression':
+      return getMemberExpressionValue(value)
     default:
       return "";
   }

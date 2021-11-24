@@ -1,3 +1,4 @@
+import { CallExpression, MemberExpression } from "seafox/dist/parser/types";
 import { getValue } from "./constants";
 import { Converter } from "./converter";
 import { ClassDefinition } from "./nodes";
@@ -26,4 +27,18 @@ export class ClassBody {
 
     return this.output;
   }
+}
+
+export const getMemberExpressionValue =(expression:MemberExpression):string => {
+  let output = ""
+  const object = expression.object;
+  const property = (expression.property as any).name;
+  if(object.type == "MemberExpression") {
+    output += getMemberExpressionValue(object) + ".";
+  } else {
+    output += (object as any).name + "."
+  } 
+  output += property
+  return output
+
 }

@@ -2,7 +2,6 @@ import { parse } from "seafox";
 import { types, getLiteralValue, getValue } from "./constants";
 import { VariableDeclarationNode } from "./nodes";
 import { addTabs, FunctionDefiniton, getFunctionParameters } from "./function";
-import { getObjectExpressionValue } from "./objects";
 import { ClassBody } from "./classes";
 import { Conditionals } from "./conditionals";
 
@@ -60,7 +59,7 @@ export class Converter {
         continue;
       }
       const name = declaration.id.name;
-      const literalTypes = ["ObjectExpression", "ConditionalExpression"]
+      const literalTypes = ["ObjectExpression", "ConditionalExpression", "ArrayExpression", "MemberExpression"]
       if(literalTypes.includes(declaration.init.type)){
         output += name + "=" + getValue(declaration.init) + "\n";
         continue

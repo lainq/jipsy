@@ -50,3 +50,16 @@ export interface IfStatement {
   consequent: any;
   alternate: any | null;
 }
+
+export interface MemberExpression {
+  type: string,
+  object: any;
+  computed: boolean;
+  property: any;
+}
+
+export interface CallExpression {
+  type: string;
+  callee: any;
+  arguments: any[];
+}
