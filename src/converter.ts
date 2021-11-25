@@ -4,6 +4,7 @@ import { VariableDeclarationNode } from "./nodes";
 import { addTabs, FunctionDefiniton, getFunctionParameters } from "./function";
 import { ClassBody } from "./classes";
 import { Conditionals } from "./conditionals";
+import { getSwitchStatementValue } from "./switch";
 
 interface ProgramBody {
   type: string;
@@ -122,6 +123,9 @@ export class Converter {
           const conditional = new Conditionals(node);
           this.output += conditional.generateOutput();
           break;
+        case 'SwitchStatement':
+          this.output += getSwitchStatementValue(node)
+          break
         default:
           console.log(node);
           break;

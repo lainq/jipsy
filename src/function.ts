@@ -1,4 +1,4 @@
-import { getValue } from "./constants";
+import { getValue, types } from "./constants";
 import { Converter } from "./converter";
 import { Exception } from "./exception";
 
@@ -34,11 +34,15 @@ export const getFunctionParameters = (params: Array<any>): string => {
         current.right.value != undefined
           ? current.right.value
           : current.right.name;
-      params_ += `${paramName}=${value},`;
+
+      params_ += `${paramName}=${getValue({
+        type: current.right.value ? "Literal" : "Identifier",
+        value:value
+      })},`;
     } else if (current.type == "Literal") {
       // Literal is not used for function definitions
       // instead, it is used for function calls
-      params_ += current.value + ",";
+      params_ += getValue(current) + ","
     }
   }
   if (params_.length > 1) {
