@@ -36,10 +36,10 @@ export const getFunctionParameters = (params: Array<any>): string => {
           : current.right.name;
 
       params_ += `${paramName}=${getValue({
-        type: current.right.value ? "Literal" : "Identifier",
+        type: current.right.value ? current.right.type : "Identifier",
         value:value
       })},`;
-    } else if (current.type == "Literal") {
+    } else {
       // Literal is not used for function definitions
       // instead, it is used for function calls
       params_ += getValue(current) + ","

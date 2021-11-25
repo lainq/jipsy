@@ -5,6 +5,7 @@ import { addTabs, FunctionDefiniton, getFunctionParameters } from "./function";
 import { ClassBody } from "./classes";
 import { Conditionals } from "./conditionals";
 import { getSwitchStatementValue } from "./switch";
+import { ImportDeclaration } from "./imports";
 
 interface ProgramBody {
   type: string;
@@ -125,6 +126,10 @@ export class Converter {
           break;
         case 'SwitchStatement':
           this.output += getSwitchStatementValue(node)
+          break
+        case 'ImportDeclaration':
+          const importDeclaration = new ImportDeclaration(node)
+          this.output += importDeclaration.generateOutput() + "\n"
           break
         default:
           console.log(node);

@@ -1,5 +1,5 @@
 - For loops
 - Do while loops
-- Ternary operator
 - Complex data types in ternary operators
-- Switch statements
+- Imports
+- Need to convert the imported files to python too

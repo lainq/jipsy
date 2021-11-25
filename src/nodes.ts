@@ -63,3 +63,9 @@ export interface CallExpression {
   callee: any;
   arguments: any[];
 }
+
+export interface ImportDeclarationNode {
+  type: string,
+  specifiers: any[],
+  source: any
+}
