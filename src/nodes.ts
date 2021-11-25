@@ -65,7 +65,7 @@ export interface CallExpression {
 }
 
 export interface ImportDeclarationNode {
-  type: string,
-  specifiers: any[],
-  source: any
+  type: string;
+  specifiers: any[];
+  source: any;
 }

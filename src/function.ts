@@ -37,12 +37,12 @@ export const getFunctionParameters = (params: Array<any>): string => {
 
       params_ += `${paramName}=${getValue({
         type: current.right.value ? current.right.type : "Identifier",
-        value:value
+        value: value,
       })},`;
     } else {
       // Literal is not used for function definitions
       // instead, it is used for function calls
-      params_ += getValue(current) + ","
+      params_ += getValue(current) + ",";
     }
   }
   if (params_.length > 1) {

@@ -124,13 +124,13 @@ export class Converter {
           const conditional = new Conditionals(node);
           this.output += conditional.generateOutput();
           break;
-        case 'SwitchStatement':
-          this.output += getSwitchStatementValue(node)
-          break
-        case 'ImportDeclaration':
-          const importDeclaration = new ImportDeclaration(node)
-          this.output += importDeclaration.generateOutput() + "\n"
-          break
+        case "SwitchStatement":
+          this.output += getSwitchStatementValue(node);
+          break;
+        case "ImportDeclaration":
+          const importDeclaration = new ImportDeclaration(node);
+          this.output += importDeclaration.generateOutput() + "\n";
+          break;
         default:
           console.log(node);
           break;
