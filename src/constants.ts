@@ -71,11 +71,11 @@ export const getValue = (value: any, name?: string): string => {
       return `[${values.join(",")}]`;
     case "MemberExpression":
       return getMemberExpressionValue(value);
-    case 'ThisExpression':
-      return 'self';
-    case 'UpdateExpression':
+    case "ThisExpression":
+      return "self";
+    case "UpdateExpression":
       const updateVariableName = getValue(value.argument);
-      return `${updateVariableName} += 1`
+      return `${updateVariableName} += 1`;
     default:
       return "";
   }

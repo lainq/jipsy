@@ -132,19 +132,19 @@ export class Converter {
           const importDeclaration = new ImportDeclaration(node);
           this.output += importDeclaration.generateOutput() + "\n";
           break;
-        case 'ForStatement':
+        case "ForStatement":
           const name = node.init.declarations[0].id.name;
           const initialValue = getValue(node.init.declarations[0].init);
 
           const test = getValue(node.test);
           const update = getValue(node.update);
 
-          const loopConverter = new Converter("")
+          const loopConverter = new Converter("");
           loopConverter.setProgramNode(node.body);
 
           const bodyString = addTabs(loopConverter.generateOutput());
           this.output += `${name}=${initialValue}\nwhile ${test}:\n${bodyString}\n\t${update}`;
-          break
+          break;
         default:
           console.log(node);
           break;

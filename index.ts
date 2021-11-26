@@ -1,4 +1,4 @@
-import { yellowBright } from "chalk";
+import { greenBright, yellowBright } from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { ArgumentParser, ArgumentParserResults } from "./src/argument";
 import { Converter } from "./src/converter";
@@ -10,6 +10,8 @@ const performCommand = (result: ArgumentParserResults): void => {
       console.log("helping..");
       break;
     default:
+      const startTime: any = new Date();
+      console.log(yellowBright("Starting..."));
       if (!result.command) {
         return;
       }
@@ -23,7 +25,13 @@ const performCommand = (result: ArgumentParserResults): void => {
       let content = readFileSync(result.command).toString();
       let converter = new Converter(content);
       const output = converter.generateOutput();
-      writeFileSync("out.py", output);
+
+      const stopTime: any = new Date();
+      console.log(
+        greenBright(
+          `Output generated in ${(stopTime - startTime) / 1000} second`
+        )
+      );
   }
 };
 

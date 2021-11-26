@@ -29,21 +29,19 @@ export class ClassBody {
   }
 }
 
-export const getMemberExpressionValue = (
-  expression: any
-): string => {
+export const getMemberExpressionValue = (expression: any): string => {
   let output = "";
-  if(expression.type == "Super"){
+  if (expression.type == "Super") {
     return "super";
   }
   let object = expression.object;
-  if(object.type == "ThisExpression"){
+  if (object.type == "ThisExpression") {
     object = {
       type: "Identifier",
-      name: "self"
-    }
+      name: "self",
+    };
   }
-  const property = expression.property ? ((expression.property as any).name) : "";
+  const property = expression.property ? (expression.property as any).name : "";
   if (object.type == "MemberExpression") {
     output += getMemberExpressionValue(object) + ".";
   } else {

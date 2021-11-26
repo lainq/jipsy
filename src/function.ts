@@ -120,10 +120,11 @@ export class FunctionDefiniton {
 
   public static fromMethodDefinition(expression: any): string {
     let output = "";
-    const key = expression.key.name == "constructor" ? "__init__" : expression.key.name;
-    let body = expression.value
-    if(!expression.static){
-      body.params.unshift({type:"Identifier", name:"self"})
+    const key =
+      expression.key.name == "constructor" ? "__init__" : expression.key.name;
+    let body = expression.value;
+    if (!expression.static) {
+      body.params.unshift({ type: "Identifier", name: "self" });
     }
     const value = getValue(expression.value, key);
     output += value.replace("\n", "\n\t");
