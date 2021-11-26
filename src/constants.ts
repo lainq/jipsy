@@ -73,6 +73,9 @@ export const getValue = (value: any, name?: string): string => {
       return getMemberExpressionValue(value);
     case 'ThisExpression':
       return 'self';
+    case 'UpdateExpression':
+      const updateVariableName = getValue(value.argument);
+      return `${updateVariableName} += 1`
     default:
       return "";
   }
