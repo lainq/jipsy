@@ -6,6 +6,7 @@ import { ClassBody } from "./classes";
 import { Conditionals } from "./conditionals";
 import { getSwitchStatementValue } from "./switch";
 import { ImportDeclaration } from "./imports";
+import { redBright } from "chalk";
 
 interface ProgramBody {
   type: string;

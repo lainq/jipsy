@@ -30,11 +30,20 @@ export class ClassBody {
 }
 
 export const getMemberExpressionValue = (
-  expression: MemberExpression
+  expression: any
 ): string => {
   let output = "";
-  const object = expression.object;
-  const property = (expression.property as any).name;
+  if(expression.type == "Super"){
+    return "super";
+  }
+  let object = expression.object;
+  if(object.type == "ThisExpression"){
+    object = {
+      type: "Identifier",
+      name: "self"
+    }
+  }
+  const property = expression.property ? ((expression.property as any).name) : "";
   if (object.type == "MemberExpression") {
     output += getMemberExpressionValue(object) + ".";
   } else {

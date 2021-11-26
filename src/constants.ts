@@ -71,6 +71,8 @@ export const getValue = (value: any, name?: string): string => {
       return `[${values.join(",")}]`;
     case "MemberExpression":
       return getMemberExpressionValue(value);
+    case 'ThisExpression':
+      return 'self';
     default:
       return "";
   }
