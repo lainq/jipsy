@@ -27,8 +27,8 @@ const performCommand = (result: ArgumentParserResults): void => {
       let converter = new Converter(content);
       const output = converter.generateOutput();
 
-      const outputFilename = basename(result.command).split(".")[0]
-      writeFileSync(`${outputFilename}.out.py`, output)
+      const outputFilename = basename(result.command).split(".")[0];
+      writeFileSync(`${outputFilename}.out.py`, output);
       const stopTime: any = new Date();
       console.log(
         greenBright(

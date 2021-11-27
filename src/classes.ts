@@ -35,8 +35,8 @@ export const getMemberExpressionValue = (expression: any): string => {
     return "super";
   }
   let object = expression.object;
-  if(!object){
-    return ""
+  if (!object) {
+    return "";
   }
   if (object.type == "ThisExpression") {
     object = {

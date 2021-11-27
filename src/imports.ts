@@ -20,8 +20,8 @@ export class ImportDeclaration {
       let specifier = specifiers[index];
       if (specifier.type == "ImportDefaultSpecifier") {
         output += specifier.local.name + ",";
-      } else if(specifier.type == "ImportNamespaceSpecifier") {
-        output += "*,"
+      } else if (specifier.type == "ImportNamespaceSpecifier") {
+        output += "*,";
       } else {
         const localName = specifier.local.name;
         const imported = specifier.imported.name;
