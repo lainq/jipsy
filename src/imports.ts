@@ -1,3 +1,4 @@
+import { basename } from "path";
 import { ImportDeclarationNode } from "./nodes";
 
 export class ImportDeclaration {
@@ -8,7 +9,7 @@ export class ImportDeclaration {
 
   public generateOutput(): string {
     const specifiers = this.getImportSpecifiers();
-    const importedFrom = this.statement.source.value;
+    const importedFrom = basename(this.statement.source.value).split(".")[0];
     return `from ${importedFrom} import ${specifiers}`;
   }
 
@@ -19,6 +20,8 @@ export class ImportDeclaration {
       let specifier = specifiers[index];
       if (specifier.type == "ImportDefaultSpecifier") {
         output += specifier.local.name + ",";
+      } else if(specifier.type == "ImportNamespaceSpecifier") {
+        output += "*,"
       } else {
         const localName = specifier.local.name;
         const imported = specifier.imported.name;

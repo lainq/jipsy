@@ -1,22 +1,29 @@
-function outer() {
-  // only inner() is in scope here
-  // because only functions are forward-referenced
+import { readFile } from 'fs'
+import { argv } from 'process'
 
-  var a = 1;
-
-  //now 'a' and inner() are in scope
-
-  function inner() {
-    var b = 2;
-
-    if (a == 1) {
-      var c = 3;
-    }
-
-    // 'c' is still in scope because JavaScript doesn't care
-    // about the end of the 'if' block, only function inner()
+class Interpreter {
+  constructor(source) {
+    this.source = source
+    this.index = index
+    this.ascii = 0
   }
 
-  // now b and c are out of scope
-  // a and inner() are still in scope
+  interpret() {
+    while(this.index < this.source.length()){
+      const character = this.source[index]
+      if(character == '+'){
+        this.ascii += 1
+      } else if(character == '-'){
+        this.ascii -= 1
+      } else if(character == ';'){
+        process.exit()
+      } else if (character == '#') {
+        console.log(String.fromCharCode(character))
+      }
+    }
+  }
 }
+
+const args = argv.slice(2)
+const filename = args[0]
+readFile(filename, (content) => {new Interpreter(content).interpret()})

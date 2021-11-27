@@ -1,5 +1,6 @@
 import { greenBright, yellowBright } from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { basename } from "path";
 import { ArgumentParser, ArgumentParserResults } from "./src/argument";
 import { Converter } from "./src/converter";
 import { Exception } from "./src/exception";
@@ -26,6 +27,8 @@ const performCommand = (result: ArgumentParserResults): void => {
       let converter = new Converter(content);
       const output = converter.generateOutput();
 
+      const outputFilename = basename(result.command).split(".")[0]
+      writeFileSync(`${outputFilename}.out.py`, output)
       const stopTime: any = new Date();
       console.log(
         greenBright(
