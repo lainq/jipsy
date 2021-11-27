@@ -1,6 +1,6 @@
 {
   "name": "jipsy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Jipsy is a tool used to convert js syntax into python syntax (kinda)",
   "main": "./dist/index.js",
   "scripts": {
@@ -22,12 +22,12 @@
   "homepage": "https://github.com/pranavbaburaj/esolang#readme",
   "devDependencies": {
     "@types/node": "^16.11.9",
-    "seafox": "^1.7.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "seafox": "^1.7.1"
   },
   "files" : [
     "bin",
