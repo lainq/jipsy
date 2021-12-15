@@ -5,7 +5,6 @@
   <p>Jipsy is a tool which can be used to convert javascript syntax to python syntax (kinda)</p>
 </div>
 
-> **NOTE**: Jipsy is still under development and there are a lot of issues. If u see any errors/issues, create a new [issue](https://github.com/pranavbaburaj/jipsy/issues/new).
 
 ## ⬇️ Installation
 
